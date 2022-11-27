@@ -11,6 +11,9 @@ function App() {
     { id: "bar" },
     { id: "baz" },
     { id: "blep" },
+    { id: "foo1" },
+    { id: "bar2" },
+    { id: "baz3" },
   ];
 
   const handleClick = (id: string) => {
@@ -34,7 +37,11 @@ function App() {
     );
   });
 
-  return <div className="App">{cardList}</div>;
+  return (
+    <div className="App">
+      <div className="cards">{cardList}</div>
+    </div>
+  );
 }
 
 export default App;
