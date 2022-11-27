@@ -4,19 +4,27 @@ import Card from "./components/card";
 import { useState } from "react";
 
 function App() {
-  const [openCards, setOpenCards] = useState([]);
+  const [openCards, setOpenCards] = useState(["bar", "blep"]);
 
-  return (
-    <div className="App">
-      <Card>
-        <img src="/vite.svg" className="logo" alt="Vite logo" />
-      </Card>
+  const cardItems = [
+    { id: "foo" },
+    { id: "bar" },
+    { id: "baz" },
+    { id: "blep" },
+  ];
+  const cardList = cardItems.map(cardItem => {
+    return (
+      <a
+        onClick={() => {
+          setOpenCards([...openCards, cardItem.id]);
+        }}
+      >
+        <Card isOpen={openCards.includes(cardItem.id)}>{cardItem.id}</Card>
+      </a>
+    );
+  });
 
-      <Card isOpen>
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </Card>
-    </div>
-  );
+  return <div className="App">{cardList}</div>;
 }
 
 export default App;
