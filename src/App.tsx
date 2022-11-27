@@ -12,13 +12,14 @@ function App() {
     { id: "baz" },
     { id: "blep" },
   ];
+
+  const handleClick = (id: string) => {
+    setOpenCards([...openCards, id]);
+  };
+
   const cardList = cardItems.map(cardItem => {
     return (
-      <a
-        onClick={() => {
-          setOpenCards([...openCards, cardItem.id]);
-        }}
-      >
+      <a onClick={() => handleClick(cardItem.id)}>
         <Card isOpen={openCards.includes(cardItem.id)}>{cardItem.id}</Card>
       </a>
     );
