@@ -14,14 +14,23 @@ function App() {
   ];
 
   const handleClick = (id: string) => {
-    setOpenCards([...openCards, id]);
+    if (openCards.includes(id)) {
+      setOpenCards(openCards.filter(item => item !== id));
+    } else if (openCards.length >= 2) {
+      setOpenCards([]);
+    } else {
+      setOpenCards([...openCards, id]);
+    }
   };
 
   const cardList = cardItems.map(cardItem => {
     return (
-      <a onClick={() => handleClick(cardItem.id)}>
-        <Card isOpen={openCards.includes(cardItem.id)}>{cardItem.id}</Card>
-      </a>
+      <Card
+        isOpen={openCards.includes(cardItem.id)}
+        handleClick={() => handleClick(cardItem.id)}
+      >
+        {cardItem.id}
+      </Card>
     );
   });
 

@@ -4,14 +4,17 @@ import classNames from "classnames";
 function Card({
   children,
   isOpen = false,
-  onClick,
+  handleClick,
 }: {
   children: React.ReactNode;
   isOpen?: boolean;
-  onClick?: () => void;
+  handleClick?: () => void;
 }) {
   return (
-    <div className={classNames("card", { ["isOpen"]: isOpen })}>
+    <div
+      className={classNames("card", { ["isOpen"]: isOpen })}
+      onClick={handleClick}
+    >
       <div className="cardContent">
         <div className="cardFront">x</div>
         <div className="cardBack">
