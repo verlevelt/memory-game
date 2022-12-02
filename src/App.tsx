@@ -1,12 +1,16 @@
 import reactLogo from "./assets/react.svg";
 import "./App.scss";
 import Card from "./components/card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [openCards, setOpenCards] = useState<{ id: number; value: string }[]>(
     []
   );
+
+  const [currentRound, setCurrentRound] = useState<
+    { id: number; value: string }[]
+  >([]);
 
   const [score, setScore] = useState<number>(0);
 
@@ -28,24 +32,40 @@ function App() {
   const compare = (arr: { id: number; value: string }[]) => {
     if (arr[0].value === arr[1].value) {
       setScore(score => (score += 1));
+      setOpenCards([
+        ...openCards,
+        { id: arr[0].id, value: arr[0].value },
+        { id: arr[1].id, value: arr[1].value },
+      ]);
+      setCurrentRound([]);
+    } else {
+      setTimeout(() => {
+        setCurrentRound([]);
+      }, 1000);
     }
   };
 
   const handleClick = (id: number, value: string) => {
-    if (openCards.some(item => item.id === id)) {
-      setOpenCards(openCards.filter(item => item.id !== id));
-    } else if (openCards.length >= 2) {
-      compare(openCards);
-      setOpenCards([]);
+    if (currentRound.some(item => item.id === id)) {
+      setCurrentRound(currentRound.filter(item => item.id !== id));
     } else {
-      setOpenCards([...openCards, { id: id, value: value }]);
+      setCurrentRound([...currentRound, { id: id, value: value }]);
     }
   };
+
+  useEffect(() => {
+    if (currentRound.length === 2) {
+      compare(currentRound);
+    } else return;
+  }, [currentRound]);
 
   const cardList = cardItems.map(cardItem => {
     return (
       <Card
-        isOpen={openCards.some(item => item.id === cardItem.id)}
+        isOpen={
+          openCards.some(item => item.id === cardItem.id) ||
+          currentRound.some(item => item.id === cardItem.id)
+        }
         handleClick={() => handleClick(cardItem.id, cardItem.value)}
       >
         {cardItem.value}
