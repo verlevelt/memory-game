@@ -25,8 +25,8 @@ function App() {
     { image: "", id: 7, value: "typescript" },
     { image: "", id: 8, value: "graphQl" },
     { image: "", id: 9, value: "graphQl" },
-    { image: "", id: 10, value: "sass" },
-    { image: "", id: 11, value: "sass" },
+    { image: "", id: 10, value: "vite" },
+    { image: "", id: 11, value: "vite" },
   ];
 
   const compare = (arr: { id: number; value: string }[]) => {
@@ -48,6 +48,8 @@ function App() {
   const handleClick = (id: number, value: string) => {
     if (currentRound.some(item => item.id === id)) {
       setCurrentRound(currentRound.filter(item => item.id !== id));
+    } else if (currentRound.length === 2) {
+      return;
     } else {
       setCurrentRound([...currentRound, { id: id, value: value }]);
     }
