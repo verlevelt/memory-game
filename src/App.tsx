@@ -1,7 +1,12 @@
-import reactLogo from "./assets/react.svg";
 import "./App.scss";
 import Card from "./components/card";
 import { useEffect, useState } from "react";
+
+interface CardItem {
+  id: number;
+  image: string;
+  value: string;
+}
 
 function App() {
   const [openCards, setOpenCards] = useState<{ id: number; value: string }[]>(
@@ -14,7 +19,9 @@ function App() {
 
   const [score, setScore] = useState<number>(0);
 
-  const cardItems: { id: number; image: string; value: string }[] = [
+  const [shuffledCardItems, setShuffledCardItems] = useState<CardItem[]>([]);
+
+  const cardItems: CardItem[] = [
     { image: "", id: 0, value: "react" },
     { image: "", id: 1, value: "react" },
     { image: "", id: 2, value: "next" },
@@ -28,6 +35,14 @@ function App() {
     { image: "", id: 10, value: "vite" },
     { image: "", id: 11, value: "vite" },
   ];
+
+  const shuffle = (a: CardItem[]) => {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
 
   const compare = (arr: { id: number; value: string }[]) => {
     if (arr[0].value === arr[1].value) {
@@ -61,7 +76,11 @@ function App() {
     } else return;
   }, [currentRound]);
 
-  const cardList = cardItems.map(cardItem => {
+  useEffect(() => {
+    setShuffledCardItems(shuffle(cardItems));
+  }, []);
+
+  const cardList = shuffledCardItems.map(cardItem => {
     return (
       <Card
         isOpen={
