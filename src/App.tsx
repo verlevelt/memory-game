@@ -1,6 +1,7 @@
 import "./App.scss";
 import Card from "./components/Card";
 import { useEffect, useState } from "react";
+import ControlBoard from "./components/ControlBoard";
 
 interface CardItem {
   id: number;
@@ -71,6 +72,13 @@ function App() {
     }
   };
 
+  const resetGame = () => {
+    setCurrentRound([]);
+    setOpenCards([]);
+    setScore(0);
+    setTimeout(() => setShuffledCardItems(shuffle(cardItems)), 300); //wait until the flip animation is done
+  };
+
   useEffect(() => {
     if (currentRound.length === 2) {
       compare(currentRound);
@@ -97,8 +105,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <ControlBoard/> */}
-      {score}
+      <ControlBoard score={score} handleClick={() => resetGame()} />
       <div className="cards">{cardList}</div>
     </div>
   );
