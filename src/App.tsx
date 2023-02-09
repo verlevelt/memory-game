@@ -1,5 +1,5 @@
 import "./App.scss";
-import Card from "./components/card";
+import Card from "./components/Card";
 import { useEffect, useState } from "react";
 
 interface CardItem {
@@ -8,14 +8,15 @@ interface CardItem {
   value: string;
 }
 
-function App() {
-  const [openCards, setOpenCards] = useState<{ id: number; value: string }[]>(
-    []
-  );
+interface CardId {
+  id: number;
+  value: string;
+}
 
-  const [currentRound, setCurrentRound] = useState<
-    { id: number; value: string }[]
-  >([]);
+function App() {
+  const [openCards, setOpenCards] = useState<CardId[]>([]);
+
+  const [currentRound, setCurrentRound] = useState<CardId[]>([]);
 
   const [score, setScore] = useState<number>(0);
 
@@ -96,6 +97,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <ControlBoard/> */}
       {score}
       <div className="cards">{cardList}</div>
     </div>
