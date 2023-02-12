@@ -104,7 +104,7 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="app">
       <ControlBoard score={score} handleClick={() => resetGame()} />
       <div className="cards">{cardList}</div>
     </div>

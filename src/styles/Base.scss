@@ -1,0 +1,7 @@
+$screen-sm: 520px;
+
+@mixin sm {
+  @media (min-width: #{$screen-sm}) {
+    @content;
+  }
+}

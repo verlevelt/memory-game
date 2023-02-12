@@ -8,8 +8,8 @@ function ControlBoard({
   handleClick: () => void;
 }) {
   return (
-    <div>
-      <div>Score: {score}</div> <button onClick={handleClick}>Reset</button>{" "}
+    <div className="controlBoard">
+      <div>Score: {score}</div> <button onClick={handleClick}>Reset</button>
     </div>
   );
 }
