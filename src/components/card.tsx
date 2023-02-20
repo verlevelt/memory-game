@@ -2,12 +2,12 @@ import "../styles/Card.scss";
 import classNames from "classnames";
 
 function Card({
-  children,
   isOpen = false,
   handleClick,
+  image,
 }: {
-  children: React.ReactNode;
   isOpen?: boolean;
+  image: string;
   handleClick?: () => void;
 }) {
   return (
@@ -18,7 +18,7 @@ function Card({
       <div className="cardContent">
         <div className="cardFront">x</div>
         <div className="cardBack">
-          <div>{children}</div>
+          <img className="cardImage" src={image} />
         </div>
       </div>
     </div>

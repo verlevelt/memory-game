@@ -42,3 +42,11 @@
   background: #03446a;
   transform: rotateY(180deg);
 }
+
+.cardImage {
+  max-width: 60px;
+
+  @include sm {
+    max-width: 90px;
+  }
+}

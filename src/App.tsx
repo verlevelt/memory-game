@@ -24,18 +24,18 @@ function App() {
   const [shuffledCardItems, setShuffledCardItems] = useState<CardItem[]>([]);
 
   const cardItems: CardItem[] = [
-    { image: "", id: 0, value: "react" },
-    { image: "", id: 1, value: "react" },
-    { image: "", id: 2, value: "next" },
-    { image: "", id: 3, value: "next" },
-    { image: "", id: 4, value: "astro" },
-    { image: "", id: 5, value: "astro" },
-    { image: "", id: 6, value: "typescript" },
-    { image: "", id: 7, value: "typescript" },
-    { image: "", id: 8, value: "graphQl" },
-    { image: "", id: 9, value: "graphQl" },
-    { image: "", id: 10, value: "vite" },
-    { image: "", id: 11, value: "vite" },
+    { image: "logos/react.svg", id: 0, value: "react" },
+    { image: "logos/react.svg", id: 1, value: "react" },
+    { image: "logos/next.svg", id: 2, value: "next" },
+    { image: "logos/next.svg", id: 3, value: "next" },
+    { image: "logos/astro.svg", id: 4, value: "astro" },
+    { image: "logos/astro.svg", id: 5, value: "astro" },
+    { image: "logos/typescript.svg", id: 6, value: "typescript" },
+    { image: "logos/typescript.svg", id: 7, value: "typescript" },
+    { image: "logos/graphql.svg", id: 8, value: "graphQl" },
+    { image: "logos/graphql.svg", id: 9, value: "graphQl" },
+    { image: "logos/vite.svg", id: 10, value: "vite" },
+    { image: "logos/vite.svg", id: 11, value: "vite" },
   ];
 
   const shuffle = (a: CardItem[]) => {
@@ -96,10 +96,9 @@ function App() {
           openCards.some(item => item.id === cardItem.id) ||
           currentRound.some(item => item.id === cardItem.id)
         }
+        image={cardItem.image}
         handleClick={() => handleClick(cardItem.id, cardItem.value)}
-      >
-        {cardItem.value}
-      </Card>
+      />
     );
   });
 
